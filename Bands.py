@@ -12,7 +12,7 @@ bands_and_albums = [
     ("Pantera", "Vulgar Display of Power"),
     ("Led Zeppelin", "IV"),
     ("Pink Floyd", "The Wall"),
-    ("Tool", "Lateralus"),
+    ("L", "discography"),
     ("Megadeth", "Rust in Peace"),
     ("AC/DC", "Back in Black"),
     ("System of a Down", "Toxicity"),
