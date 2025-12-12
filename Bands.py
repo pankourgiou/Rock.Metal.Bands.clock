@@ -16,11 +16,11 @@ bands_and_albums = [
     ("Megadeth", "Rust in Peace"),
     ("AC/DC", "Back in Black"),
     ("System of a Down", "Toxicity"),
-    ("Nirvana", "Nevermind"),
+    ("Animals as Leaders", "Animals as Leaders"),
     ("Deep Purple", "Machine Head"),
     ("Judas Priest", "British Steel"),
     ("Queen", "A Night at the Opera"),
-    ("Rammstein", "Mutter")
+    ("Animals as Leaders", "Weightless")
 ]
 
 # Pygame setup
