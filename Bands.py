@@ -6,19 +6,19 @@ import random
 # Rock/metal bands and albums
 bands_and_albums = [
     ("Metallica", "Master of Puppets"),
-    ("Iron Maiden", "The Number of the Beast"),
+    ("Iron Maiden", "Piece of Mind"),
     ("Black Sabbath", "Paranoid"),
-    ("Slayer", "Reign in Blood"),
-    ("Pantera", "Vulgar Display of Power"),
+    ("Kerry King", "From Hell I Rise"),
+    ("Pantera", "Cowboys from Hell"),
     ("Led Zeppelin", "IV"),
-    ("Pink Floyd", "The Wall"),
+    ("Pink Floyd", "Dark Side of the Moon"),
     ("L", "discography"),
     ("Megadeth", "Rust in Peace"),
     ("AC/DC", "Back in Black"),
-    ("System of a Down", "Toxicity"),
+    ("System of a Down", "Steal this Album"),
     ("Animals as Leaders", "Animals as Leaders"),
     ("Deep Purple", "Machine Head"),
-    ("Judas Priest", "British Steel"),
+    ("Judas Priest", "Painkiller"),
     ("Queen", "A Night at the Opera"),
     ("Animals as Leaders", "Weightless")
 ]
