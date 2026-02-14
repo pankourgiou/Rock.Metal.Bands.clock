@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metal / Rock Clock</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  canvas {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(200, 0, 0, 0.4), inset 0 0 30px rgba(255, 0, 0, 0.2);
+  }
+
+  .band {
+    margin-top: 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px red;
+  }
+
+  .album {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 5px;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <canvas id="clock" width="500" height="500"></canvas>
+  <div class="band" id="band"></div>
+  <div class="album" id="album"></div>
+</div>
+
+<script>
+const bandsAndAlbums = [
+  ["Metallica", "Master of Puppets"],
+  ["Iron Maiden", "Piece of Mind"],
+  ["Black Sabbath", "Paranoid"],
+  ["Pantera", "Cowboys from Hell"],
+  ["Led Zeppelin", "IV"],
+  ["Pink Floyd", "Dark Side of the Moon"],
+  ["Megadeth", "Rust in Peace"],
+  ["AC/DC", "Back in Black"],
+  ["System of a Down", "Steal this Album"],
+  ["Deep Purple", "Machine Head"],
+  ["Judas Priest", "Painkiller"],
+  ["Queen", "A Night at the Opera"]
+];
+
+const canvas = document.getElementById("clock");
+const ctx = canvas.getContext("2d");
+const bandEl = document.getElementById("band");
+const albumEl = document.getElementById("album");
+
+let lastHour = -1;
+let currentBand = bandsAndAlbums[Math.floor(Math.random() * bandsAndAlbums.length)];
+
+function drawClock() {
+  const now = new Date();
+
+  if (now.getHours() !== lastHour) {
+    currentBand = bandsAndAlbums[Math.floor(Math.random() * bandsAndAlbums.length)];
+    lastHour = now.getHours();
+    bandEl.textContent = currentBand[0];
+    albumEl.textContent = "Album: " + currentBand[1];
+  }
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  ctx.clearRect(0, 0, width, height);
+
+  // Clock face
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, 230, 0, Math.PI * 2);
+  ctx.fillStyle = "#222";
+  ctx.fill();
+
+  // Ticks
+  for (let i = 0; i < 60; i++) {
+    const angle = (i * Math.PI) / 30;
+    const x1 = centerX + 210 * Math.sin(angle);
+    const y1 = centerY - 210 * Math.cos(angle);
+    const x2 = centerX + 220 * Math.sin(angle);
+    const y2 = centerY - 220 * Math.cos(angle);
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = "#666";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  const hour = now.getHours() % 12;
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
+
+  const hourAngle = ((hour + minute / 60) * Math.PI) / 6;
+  const minuteAngle = ((minute + second / 60) * Math.PI) / 30;
+  const secondAngle = (second * Math.PI) / 30;
+
+  function drawHand(length, angle, color, width) {
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(
+      centerX + length * Math.sin(angle),
+      centerY - length * Math.cos(angle)
+    );
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.stroke();
+  }
+
+  drawHand(110, hourAngle, "#b30000", 8);
+  drawHand(170, minuteAngle, "white", 5);
+  drawHand(200, secondAngle, "red", 2);
+
+  // center dot
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, 6, 0, Math.PI * 2);
+  ctx.fillStyle = "#b30000";
+  ctx.fill();
+
+  requestAnimationFrame(drawClock);
+}
+
+bandEl.textContent = currentBand[0];
+albumEl.textContent = "Album: " + currentBand[1];
+
+drawClock();
+</script>
+</body>
+</html>
+
+
